@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "193565610900",
+    "project_id": "unimall-14f7c",
+    "storage_bucket": "unimall-14f7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193565610900:android:c7708321a20a414be73581",
+        "android_client_info": {
+          "package_name": "com.example.unimall_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHE1_5Dpk0dT87iaJIpKiccJ29NWWFQj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
