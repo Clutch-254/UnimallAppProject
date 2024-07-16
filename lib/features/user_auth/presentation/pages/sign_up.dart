@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:unimall_app/features/user_auth/presentation/pages/sign_up.dart';
+import 'package:unimall_app/features/user_auth/presentation/pages/login_page.dart';
 import 'package:unimall_app/features/user_auth/presentation/widgets/button.dart';
-import 'package:unimall_app/features/user_auth/presentation/widgets/text_field_input.dart';
+import '../widgets/text_field_input.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -25,8 +26,13 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SizedBox(
                 width: double.infinity,
-                height: height / 2.7,
+                height: height / 2.8,
                 child: Image.asset("images/Unimallicon.png"),
+              ),
+              TextFieldInput(
+                textEditingController: emailController,
+                hintText: "Enter your name",
+                icon: Icons.person,
               ),
               TextFieldInput(
                 textEditingController: emailController,
@@ -38,27 +44,13 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: "Enter your password",
                 icon: Icons.lock,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 35),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot password?",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.brown,
-                    ),
-                  ),
-                ),
-              ),
-              Button(onTab: () {}, text: "Log In"),
+              Button(onTab: () {}, text: "Sign Up"),
               SizedBox(height: height / 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Don't have an account?",
+                    "Already have an account?",
                     style: TextStyle(fontSize: 16),
                   ),
                   GestureDetector(
@@ -66,12 +58,12 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SignUpPage(),
+                          builder: (context) => const LoginPage(),
                         ),
                       );
                     },
                     child: const Text(
-                      "SignUp",
+                      "Log In",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
