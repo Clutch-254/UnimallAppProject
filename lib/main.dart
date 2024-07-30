@@ -9,7 +9,7 @@ Future main() async {
 
   if (kIsWeb) {
     await Firebase.initializeApp(
-      options: FirebaseOptions(
+      options: const FirebaseOptions(
           apiKey: "AIzaSyDjBFp1Jn5wOQtbNIYP3xRD4aYZ-43dqc4",
           appId: "1:193565610900:web:2d597e48bddb6844e73581",
           messagingSenderId: "193565610900",
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "Unimall",
       home: SplashScreen(
         child: LoginPage(),
