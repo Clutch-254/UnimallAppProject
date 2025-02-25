@@ -30,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Image.asset("images/Unimallicon.png"),
               ),
               TextFieldInput(
-                textEditingController: emailController,
+                textEditingController: nameController,
                 hintText: "Enter your name",
                 icon: Icons.person,
               ),

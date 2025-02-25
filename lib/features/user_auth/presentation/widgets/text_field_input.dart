@@ -32,7 +32,7 @@ class TextFieldInput extends StatelessWidget {
             color: Colors.black45,
           ),
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           border: InputBorder.none,
           filled: true,
           fillColor: const Color(0xFFedf0f8),
