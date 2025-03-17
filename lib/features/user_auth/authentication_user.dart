@@ -31,4 +31,6 @@ class AuthenticationUser {
     }
     return res;
   }
+
+  loginUser({required String email, required String password}) {}
 }

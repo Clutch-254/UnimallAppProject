@@ -1,21 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:unimall_app/features/user_auth/authentication_user.dart';
+import 'package:unimall_app/features/user_auth/presentation/pages/bottomnav.dart';
 import 'package:unimall_app/features/user_auth/presentation/pages/login_page.dart';
 import 'package:unimall_app/features/user_auth/presentation/widgets/button.dart';
-import '../widgets/text_field_input.dart';
+import 'package:unimall_app/features/user_auth/presentation/widgets/snack_bar.dart';
+import 'package:unimall_app/features/user_auth/presentation/widgets/supportwidgets.dart';
+import 'package:unimall_app/features/user_auth/presentation/widgets/text_field_input.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    bool isLoading = false;
+    
+    @override
+    // ignore: unused_element
+    void despose(){
+      super.dispose();
+      nameController.dispose();
+      emailController.dispose();
+      passwordController.dispose();
+    }
+
+    void signUpUser() async {
+      String res = await AuthenticationUser().signUpUser(
+        name: nameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        
+      );
+      //if sign up is successful user navigates to homepage else error message displayed
+      if (res == "Success!") {
+        setState(() {
+          isLoading = true;
+        });
+        //navigate to homepage
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => Bottomnav(),
+          ),
+        );
+      }else {
+        setState(() {
+          isLoading = false;
+        });
+        //displays error
+        showSnackBar(context, res);
+      }
+    }
+
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -25,47 +68,49 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: double.infinity,
                 height: height / 2.8,
-                child: Image.asset("images/Unimallicon.png"),
+                width: double.infinity,
+                child: Image.asset("Images/logo.png"),
               ),
-              TextFieldInput(
+              TextFieldIn(
                 textEditingController: nameController,
-                hintText: "Enter your name",
+                hintText: "Create username",
                 icon: Icons.person,
               ),
-              TextFieldInput(
+              TextFieldIn(
                 textEditingController: emailController,
-                hintText: "Enter your email",
+                hintText: "Enter email",
                 icon: Icons.email,
               ),
-              TextFieldInput(
+              TextFieldIn(
                 textEditingController: passwordController,
-                hintText: "Enter your password",
-                icon: Icons.lock,
+                hintText: "Enter password",
+                isPass: true,
+                icon: Icons.password,
               ),
-              Button(onTab: () {}, text: "Sign Up"),
+              TheButton(onTab: signUpUser, text: "Sign Up"),
               SizedBox(height: height / 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Already have an account?",
-                    style: TextStyle(fontSize: 16),
+                  Text(
+                    "Already have an account? ",
+                    style: AppWidget.smallBoldTextFieledStyle(),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+                          builder: (context) => LoginPage(),
                         ),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       "Log In",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

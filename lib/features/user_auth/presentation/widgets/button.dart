@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class TheButton extends StatelessWidget {
   final VoidCallback onTab;
   final String text;
-  const Button({
+  const TheButton({
     super.key,
     required this.onTab,
     required this.text,
